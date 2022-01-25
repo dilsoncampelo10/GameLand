@@ -109,6 +109,18 @@ body{
     margin: 10px;
 }
 
+.button{
+    background-color: #292F3B;
+    text-align: center;
+    margin-top: 10px;
+    padding: 10px;
+    text-decoration: none;
+    color: white;
+    display: block;
+}
+.button:hover{
+    background-color: #292f3bd5;
+}
 /*Rodape*/
 footer{
     background-color: #0e1013;
