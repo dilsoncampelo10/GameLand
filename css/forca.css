@@ -50,3 +50,15 @@ input{
 .link_retorno a:hover{
     text-decoration: underline;
 }
+/*Jogo da velha*/
+#painel_da_velha{
+    display: flex;
+    flex-wrap: wrap;
+    width: 300px;
+}
+.velha{
+    width: 80px;
+    height: 80px;
+    border: 1px solid black;
+    cursor: pointer;
+}
