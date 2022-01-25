@@ -1,8 +1,18 @@
+body{
+    background-color: #292f3bd5;
+}
 .container{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-color: white;
+    width: 60%;
+    height: 500px;
+    padding: 30px;
+    margin: auto;
+    border-radius: 50px 180px 50px 74px;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.493);
 }
 
 input{
@@ -10,8 +20,33 @@ input{
     text-align: center;
     text-transform: uppercase;
     width: 60px;
-    margin-bottom: 50px;
+    margin-bottom: 40px;
     border: 0;
     border-bottom: 1px solid black;
     outline: 0;
+    background-color: transparent;
+}
+#area_palpite{
+    text-align: center;
+}
+#area_botoes button{
+    margin-top: 40px;
+    cursor: pointer;
+    width: 400px;
+    height: 40px;
+    font-size: 20px;
+}
+#erro{
+    position: absolute;
+    left: 45%;
+}
+.link_retorno{
+    margin-top: 30px;
+}
+.link_retorno a{
+    color: black;
+    text-decoration: none;
+}
+.link_retorno a:hover{
+    text-decoration: underline;
 }
