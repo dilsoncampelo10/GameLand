@@ -3,11 +3,20 @@ const tabuleiroFuncional = [
 ['','',''],
 ['','','']
 ]
+
 let velha = document.getElementsByClassName('velha');
+
+let tabuleiroVisual = [
+[velha[0],velha[1],velha[2]],
+[velha[3],velha[4],velha[5]],
+[velha[6],velha[7],velha[8]]
+]
 
 let vezJoga = 0; //0-Jogador 1-CPU
 
 let jogoRolando = true;
+
+let vencedor = '';
 
 function jogar(){
     for(let i=0;i<velha.length;i++){
@@ -86,21 +95,70 @@ function marcar(p){
         }
     }
     cpuJoga();
+    renderizar();
 }
 
 function cpuJoga(){
     if(jogoRolando && vezJoga==1){
-        let l;
-        let c;
-
+        let l,c;
    do{
         l = Math.round(Math.random()*2);
         c = Math.round(Math.random()*2);
     } while(tabuleiroFuncional[l][c]!='');
     tabuleiroFuncional[l][c] = 'O';
     }
-    alert('Jogou')
+    vencedor = verificaVitoria();
+    if(vencedor!=''){
+        alert('O vencedor foi '+vencedor);
+        jogoRolando = false;
+    }
+    
     vezJoga = 0;
 }
 
+function renderizar(){
+    for(let l=0;l<3;l++){
+        for(let c=0; c<3;c++){
+            if(tabuleiroFuncional[l][c]=='X'){
+                tabuleiroVisual[l][c].innerHTML = 'X';
+                tabuleiroVisual[l][c].style.cursor = 'default';
+            } else if(tabuleiroFuncional[l][c]=='O'){
+                tabuleiroVisual[l][c].innerHTML = 'O'; 
+                tabuleiroVisual[l][c].style.cursor = 'default';
+            } else{
+                
+               
+            }
+        }
+    }
+}
+
+function verificaVitoria(){
+    let resultado = '';
+    let l,c;
+    //Verifica Linhas
+    for(l=0;l<3;l++){
+        if(tabuleiroFuncional[l][0]==tabuleiroFuncional[l][1]&& tabuleiroFuncional[l][1]== tabuleiroFuncional[l][2]){
+            resultado = tabuleiroFuncional[l][0]; 
+        }
+    }
+    //Verifica Colunas
+    for(c=0;c<3;c++){
+        if(tabuleiroFuncional[0][c]==tabuleiroFuncional[1][c]&&tabuleiroFuncional[1][c]==tabuleiroFuncional[2][c]){
+            resultado = tabuleiroFuncional[0][c];
+        }
+    }
+
+    //Verifica Diagonal 1
+    if(tabuleiroFuncional[0][0]==tabuleiroFuncional[1][1]&& tabuleiroFuncional[1][1]==tabuleiroFuncional[2][2]){
+        resultado = tabuleiroFuncional[0][0];
+    }
+
+    //Verifica Diagonal 2
+    if(tabuleiroFuncional[0][2]==tabuleiroFuncional[1][1] && tabuleiroFuncional[1][1]== tabuleiroFuncional[2][0]){
+        resultado = tabuleiroFuncional[2][0];
+    }
+
+    return resultado;
+}
 window.onload = jogar();

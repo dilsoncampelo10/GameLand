@@ -1,5 +1,7 @@
 body{
     background-color: #292f3bd5;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
 }
 .container{
     display: flex;
@@ -58,6 +60,10 @@ input{
     
 }
 .velha{
+    font-size: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 80px;
     height: 80px;
     border: 2px solid black;
