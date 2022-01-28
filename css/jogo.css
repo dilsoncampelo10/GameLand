@@ -55,10 +55,23 @@ input{
     display: flex;
     flex-wrap: wrap;
     width: 300px;
+    
 }
 .velha{
     width: 80px;
     height: 80px;
-    border: 1px solid black;
+    border: 2px solid black;
     cursor: pointer;
+}
+.velha:nth-child(1), .velha:nth-child(2),.velha:nth-child(3){
+    border-top: 0;
+}
+.velha:nth-child(1), .velha:nth-child(4),.velha:nth-child(7){
+    border-left: 0;
+}
+.velha:nth-child(3), .velha:nth-child(6), .velha:nth-child(9){
+    border-right: 0;
+}
+.velha:nth-child(7),.velha:nth-child(8), .velha:nth-child(9){
+    border-bottom: 0;
 }
