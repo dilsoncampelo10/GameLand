@@ -18,6 +18,8 @@ let jogoRolando = true;
 
 let vencedor = '';
 
+let nivel = 2;
+
 function jogar(){
     for(let i=0;i<velha.length;i++){
         velha[i].addEventListener('click',function(){
@@ -101,19 +103,78 @@ function marcar(p){
 function cpuJoga(){
     if(jogoRolando && vezJoga==1){
         let l,c;
-   do{
-        l = Math.round(Math.random()*2);
-        c = Math.round(Math.random()*2);
-    } while(tabuleiroFuncional[l][c]!='');
-    tabuleiroFuncional[l][c] = 'O';
+        if(nivel==1){
+            do{
+                l = Math.round(Math.random()*2);
+                c = Math.round(Math.random()*2);
+            } while(tabuleiroFuncional[l][c]!='');
+            tabuleiroFuncional[l][c] = 'O';
+        } else if(nivel==2){
+            //Linha 1
+            if(tabuleiroFuncional[0][0]==tabuleiroFuncional[0][1] && tabuleiroFuncional[0][2]==''){
+                tabuleiroFuncional[0][2] = 'O';
+            } else if(tabuleiroFuncional[0][1]==tabuleiroFuncional[0][2]&&tabuleiroFuncional[0][0]==''){
+                tabuleiroFuncional[0][0]=='O';
+            } else if(tabuleiroFuncional[0][0]==tabuleiroFuncional[0][2] && tabuleiroFuncional[0][1]=='' ){
+                tabuleiroFuncional[0][1] = 'O';
+            }
+
+            //Linha 2
+            if(tabuleiroFuncional[1][0]==tabuleiroFuncional[1][1] && tabuleiroFuncional[1][2]==''){
+                tabuleiroFuncional[1][2] = 'O';
+            } else if(tabuleiroFuncional[1][1]==tabuleiroFuncional[1][2]&&tabuleiroFuncional[1][0]==''){
+                tabuleiroFuncional[1][0] = 'O';
+            } else if(tabuleiroFuncional[1][0]==tabuleiroFuncional[1][2]&&tabuleiroFuncional[1][1]==''){
+                tabuleiroFuncional[1][1] = 'O';
+            }
+
+            //Linha 3
+            if(tabuleiroFuncional[2][0]==tabuleiroFuncional[2][1] && tabuleiroFuncional[2][2]==''){
+                tabuleiroFuncional[2][2] = 'O';
+            } else if(tabuleiroFuncional[2][1]==tabuleiroFuncional[2][2] && tabuleiroFuncional[2][0]==''){
+                tabuleiroFuncional[2][0]='O';
+            } else if(tabuleiroFuncional[2][0]==tabuleiroFuncional[2][2] && tabuleiroFuncional[2][1]==''){
+                tabuleiroFuncional[2][1] = 'O';
+            }
+            //Coluna 1
+
+            if(tabuleiroFuncional[0][0]==tabuleiroFuncional[1][0] && tabuleiroFuncional[2][0]==''){
+                tabuleiroFuncional[2][0] = 'O';
+            } else if (tabuleiroFuncional[1][0]==tabuleiroFuncional[2][0] && tabuleiroFuncional[0][0] == ''){
+                tabuleiroFuncional[0][0] = 'O';
+            } else if(tabuleiroFuncional[0][0]==tabuleiroFuncional[2][0] && tabuleiroFuncional[1][0]==''){
+                tabuleiroFuncional[1][0] = 'O';
+            }
+
+            //Coluna 2
+            if(tabuleiroFuncional[1][0]==tabuleiroFuncional[1][1] && tabuleiroFuncional[2][1]==''){
+                tabuleiroFuncional[2][1] = 'O';
+            } else if(tabuleiroFuncional[1][1]==tabuleiroFuncional[1][2] && tabuleiroFuncional[1][0]==''){
+                tabuleiroFuncional[1][0] = 'O';
+            } else if (tabuleiroFuncional[1][0]==tabuleiroFuncional[1][2] && tabuleiroFuncional[1][1]==''){
+                tabuleiroFuncional[1][1] = 'O';
+            }
+
+            //Coluna 3
+            if(tabuleiroFuncional[0][2]==tabuleiroFuncional[1][2] && tabuleiroFuncional[2][2]=='' ){
+                tabuleiroFuncional[2][2] = 'O';
+            } else if(tabuleiroFuncional[1][2]==tabuleiroFuncional[2][2] && tabuleiroFuncional[0][2]==''){
+                tabuleiroFuncional[0][2] = 'O';
+            } else if(tabuleiroFuncional[2][2] == tabuleiroFuncional[0][2] && tabuleiroFuncional[1][2]==''){
+                tabuleiroFuncional[1][2] = 'O';
+            }
+
+        }
+   
     }
+    vezJoga = 0;
     vencedor = verificaVitoria();
     if(vencedor!=''){
         alert('O vencedor foi '+vencedor);
         jogoRolando = false;
     }
     
-    vezJoga = 0;
+    
 }
 
 function renderizar(){
@@ -161,4 +222,16 @@ function verificaVitoria(){
 
     return resultado;
 }
+
+document.getElementById('reiniciar').addEventListener('click',function(){
+    document.location.reload();
+})
+
+document.getElementById('facil').addEventListener('click',function(){
+    nivel = 1;
+})
+
+document.getElementById('normal').addEventListener('click',function(){
+    nivel = 2;
+})
 window.onload = jogar();

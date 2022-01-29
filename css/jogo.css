@@ -31,12 +31,16 @@ input{
 #area_palpite{
     text-align: center;
 }
+#area_botoes{
+    text-align: center;
+}
 #area_botoes button{
     margin-top: 40px;
     cursor: pointer;
     width: 400px;
     height: 40px;
     font-size: 20px;
+    
 }
 #erro{
     position: absolute;
