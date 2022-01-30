@@ -20,6 +20,9 @@ let vencedor = '';
 
 let nivel = 2;
 
+let jogada =0;
+
+
 function jogar(){
     for(let i=0;i<velha.length;i++){
         velha[i].addEventListener('click',function(){
@@ -96,6 +99,7 @@ function marcar(p){
                 break;       
         }
     }
+    jogada++;
     cpuJoga();
     renderizar();
 }
@@ -107,7 +111,7 @@ function cpuJoga(){
             do{
                 l = Math.round(Math.random()*2);
                 c = Math.round(Math.random()*2);
-            } while(tabuleiroFuncional[l][c]!='');
+            } while(tabuleiroFuncional[l][c]!='' && jogada<9);
             tabuleiroFuncional[l][c] = 'O';
         } else if(nivel==2){
             //Linha 1
@@ -117,8 +121,7 @@ function cpuJoga(){
                 tabuleiroFuncional[0][0]=='O';
             } else if(tabuleiroFuncional[0][0]==tabuleiroFuncional[0][2] && tabuleiroFuncional[0][1]=='' ){
                 tabuleiroFuncional[0][1] = 'O';
-            }
-
+            } else
             //Linha 2
             if(tabuleiroFuncional[1][0]==tabuleiroFuncional[1][1] && tabuleiroFuncional[1][2]==''){
                 tabuleiroFuncional[1][2] = 'O';
@@ -126,8 +129,7 @@ function cpuJoga(){
                 tabuleiroFuncional[1][0] = 'O';
             } else if(tabuleiroFuncional[1][0]==tabuleiroFuncional[1][2]&&tabuleiroFuncional[1][1]==''){
                 tabuleiroFuncional[1][1] = 'O';
-            }
-
+            } else
             //Linha 3
             if(tabuleiroFuncional[2][0]==tabuleiroFuncional[2][1] && tabuleiroFuncional[2][2]==''){
                 tabuleiroFuncional[2][2] = 'O';
@@ -135,26 +137,23 @@ function cpuJoga(){
                 tabuleiroFuncional[2][0]='O';
             } else if(tabuleiroFuncional[2][0]==tabuleiroFuncional[2][2] && tabuleiroFuncional[2][1]==''){
                 tabuleiroFuncional[2][1] = 'O';
-            }
+            } else
             //Coluna 1
-
             if(tabuleiroFuncional[0][0]==tabuleiroFuncional[1][0] && tabuleiroFuncional[2][0]==''){
                 tabuleiroFuncional[2][0] = 'O';
             } else if (tabuleiroFuncional[1][0]==tabuleiroFuncional[2][0] && tabuleiroFuncional[0][0] == ''){
                 tabuleiroFuncional[0][0] = 'O';
             } else if(tabuleiroFuncional[0][0]==tabuleiroFuncional[2][0] && tabuleiroFuncional[1][0]==''){
                 tabuleiroFuncional[1][0] = 'O';
-            }
-
+            } else
             //Coluna 2
-            if(tabuleiroFuncional[1][0]==tabuleiroFuncional[1][1] && tabuleiroFuncional[2][1]==''){
+            if(tabuleiroFuncional[0][1]==tabuleiroFuncional[1][1] && tabuleiroFuncional[2][1]==''){
                 tabuleiroFuncional[2][1] = 'O';
-            } else if(tabuleiroFuncional[1][1]==tabuleiroFuncional[1][2] && tabuleiroFuncional[1][0]==''){
-                tabuleiroFuncional[1][0] = 'O';
-            } else if (tabuleiroFuncional[1][0]==tabuleiroFuncional[1][2] && tabuleiroFuncional[1][1]==''){
+            } else if(tabuleiroFuncional[1][1]==tabuleiroFuncional[2][1] && tabuleiroFuncional[0][1]==''){
+                tabuleiroFuncional[0][1] = 'O';
+            } else if (tabuleiroFuncional[0][1]==tabuleiroFuncional[2][1] && tabuleiroFuncional[1][1]==''){
                 tabuleiroFuncional[1][1] = 'O';
-            }
-
+            } else
             //Coluna 3
             if(tabuleiroFuncional[0][2]==tabuleiroFuncional[1][2] && tabuleiroFuncional[2][2]=='' ){
                 tabuleiroFuncional[2][2] = 'O';
@@ -162,16 +161,46 @@ function cpuJoga(){
                 tabuleiroFuncional[0][2] = 'O';
             } else if(tabuleiroFuncional[2][2] == tabuleiroFuncional[0][2] && tabuleiroFuncional[1][2]==''){
                 tabuleiroFuncional[1][2] = 'O';
+            } else
+            //Diagonal 1
+            if(tabuleiroFuncional[0][0]==tabuleiroFuncional[1][1] && tabuleiroFuncional[2][2]==''){
+                tabuleiroFuncional[2][2] = 'O';
+            } else if(tabuleiroFuncional[0][0]==tabuleiroFuncional[2][2] && tabuleiroFuncional[1][1]==''){
+                tabuleiroFuncional[1][1] = 'O';
+            } else if(tabuleiroFuncional[1][1]==tabuleiroFuncional[2][2] && tabuleiroFuncional[0][0]==''){
+                tabuleiroFuncional[0][0]=='O';
+            } else
+            //Diagonal 2
+            if(tabuleiroFuncional[0][2]==tabuleiroFuncional[1][1] && tabuleiroFuncional[2][0]==''){
+                tabuleiroFuncional[2][0] = 'O';
+            } else if(tabuleiroFuncional[0][2]==tabuleiroFuncional[2][0] && tabuleiroFuncional[1][1] == ''){
+                tabuleiroFuncional[1][1] = 'O';
+            } else if(tabuleiroFuncional[1][1] == tabuleiroFuncional[2][0] && tabuleiroFuncional[0][2]==''){
+                tabuleiroFuncional[0][2] = 'O';
+            } else{
+                
+                do{
+                     l = Math.round(Math.random()*2);
+                     c = Math.round(Math.random()*2);
+                } while(tabuleiroFuncional[l][c]!='' && jogada<9);
+                tabuleiroFuncional[l][c] = 'O';
             }
 
         }
    
     }
+
+    jogada++;
+    
     vezJoga = 0;
     vencedor = verificaVitoria();
     if(vencedor!=''){
         alert('O vencedor foi '+vencedor);
         jogoRolando = false;
+    }
+    if(jogada>=9 && vencedor==''){
+        jogoRolando = false;
+        alert('Deu velha');
     }
     
     
