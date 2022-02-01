@@ -2,6 +2,7 @@ body{
     background-color: #292f3bd5;
     box-sizing: border-box;
     font-family: Arial, Helvetica, sans-serif;
+    
 }
 .container{
     display: flex;
@@ -84,4 +85,38 @@ input{
 }
 .velha:nth-child(7),.velha:nth-child(8), .velha:nth-child(9){
     border-bottom: 0;
+}
+/*PONG*/
+.principal{
+    display: flex;
+   align-items: center;
+    flex-direction: column;
+}
+.area_jogo{
+    display: flex;
+    height: 400px;
+    width: 1000px;
+    justify-content: space-between;
+    align-items: center;
+    background-color: black;
+}
+.barra{
+    width: 20px;
+    height: 100px;
+    background-color: white;
+    position: absolute;
+}
+.esquerda{
+    margin-left: 10px;
+}
+.direita{
+   
+    left: 1150px;
+}
+.bola{
+    width: 20px;
+    height: 20px;
+    background-color: white;   
+    position: absolute;
+    left: 660px;
 }
