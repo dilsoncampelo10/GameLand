@@ -10,18 +10,18 @@
 <body>
     <section class="principal">
         <div class="area_jogo">
-            <div class="barra esquerda"></div>
-            <div class="bola"></div>
-            <div class="barra direita"></div>
+            <div class="barra esquerda" id="jogador"></div>
+            <div class="bola" id="bola"></div>
+            <div class="barra direita" id="cpu"></div>
         </div>
         <div class="area_painel">
             <div>
                 <label>Pontos</label>
-                <input type="text" id="pontos">
+                <input type="text" id="pontos" disabled>
             </div>
             <div>
                 <div id="area_botoes">
-                    <button>Iniciar</button>
+                    <button id="iniciar">Iniciar</button>
                     
                 </div>
             </div>
